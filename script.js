@@ -70,6 +70,26 @@ const registerForm = document.getElementById('registerForm');
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
+    // Check if all required fields are filled
+    const requiredFields = registerForm.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+            isValid = false;
+            field.style.borderColor = '#ff4444';
+            // Reset border color after user starts typing
+            field.addEventListener('input', function() {
+                this.style.borderColor = '';
+            }, { once: true });
+        }
+    });
+    
+    if (!isValid) {
+        alert('Please fill in all required fields marked with *.');
+        return;
+    }
+    
     const formData = new FormData(registerForm);
     const data = Object.fromEntries(formData);
     

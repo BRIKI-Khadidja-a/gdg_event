@@ -15,13 +15,16 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">About Us</a></li>
-                <li><a href="#register" class="nav-link">Register</a></li>
+                <li><a href="#about" class="nav-link">About </a></li>
                 <li><a href="#agenda" class="nav-link">Why Join?</a></li>
+                <li class="mobile-join-us"><a href="#register" class="nav-link join-us-mobile">Join Us</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                <span class="theme-icon">🌙</span>
-            </button>
+            <div class="nav-right">
+                <a href="#register" class="join-us-button">Join Us</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
             <div class="hamburger">
                 <span></span>
                 <span></span>
@@ -43,7 +46,7 @@
     <!-- About Us Section -->
     <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">About Us</h2>
+            <h2 class="section-title">About </h2>
             <div class="about-content">
                 <p>Tech for Everyone is a community-driven event that brings together developers, designers, and tech enthusiasts from all backgrounds. Our mission is to make technology accessible to everyone, regardless of their experience level.</p>
                 <p>Organized by GDG Algiers, we aim to foster learning, networking, and innovation in the tech community.</p>
@@ -96,25 +99,33 @@
     </section>
 
     <!-- Register Section -->
-    <section id="register" class="section register-section" style="background-image: url('images/background register.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <section id="register" class="section register-section">
         <div class="container">
             <h2 class="section-title">Register</h2>
             <div class="register-form-container">
                 <form class="register-form" id="registerForm">
                     <div class="form-group">
-                        <label for="name">Full Name</label>
+                        <label for="name">Full Name <span class="required">*</span></label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email <span class="required">*</span></label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
+                        <label for="phone">Phone Number <span class="required">*</span></label>
                         <input type="tel" id="phone" name="phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="motivation">Motivation Letter - Why should we accept you to join this event?</label>
+                        <label for="level">Level <span class="required">*</span></label>
+                        <select id="level" name="level" required>
+                            <option value="">-- Please select your level --</option>
+                            <option value="university">University</option>
+                            <option value="lycee">Lycee</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="motivation">Motivation Letter - Why should we accept you to join this event? <span class="required">*</span></label>
                         <textarea id="motivation" name="motivation" rows="5" placeholder="Tell us why you want to join this event and what you hope to gain from it..." required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Submit Registration</button>
@@ -132,12 +143,9 @@
                     <div class="contact-info">
                         <p class="contact-item">
                             <span class="contact-icon">📧</span>
-                            <a href="mailto:contact@gdgalgiers.com">contact@gdgalgiers.com</a>
+                            <a href="mailto:gdg.algiers@esi.dz">gdg.algiers@esi.dz</a>
                         </p>
                     </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Organized by GDG</h3>
                     <div class="social-media">
                         <a href="https://github.com/GDGAlgiers" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
                             <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -162,13 +170,8 @@
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h3>Scan QR Code</h3>
-                    <div class="qr-code">
-                        <div class="qr-placeholder">
-                            <div class="qr-pattern"></div>
-                        </div>
-                        <p class="qr-text">Scan to visit</p>
-                    </div>
+                    <h3>Organized by GDG</h3>
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">Google Developer Group Algiers</p>
                 </div>
             </div>
             <div class="footer-bottom">
