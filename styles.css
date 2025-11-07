@@ -282,6 +282,65 @@ body {
     border-radius: 2px;
 }
 
+/* Agenda Table Styles */
+.agenda-section {
+    padding: 60px 0;
+    background: var(--bg-primary);
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.agenda-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    box-shadow: 0 6px 22px var(--shadow);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.agenda-table caption {
+    caption-side: top;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.agenda-table th,
+.agenda-table td {
+    padding: 14px 70px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.agenda-table thead th {
+    background: linear-gradient(90deg, rgba(0,255,136,0.06), rgba(0,255,136,0.02));
+    position: sticky;
+    top: 0;
+}
+
+.agenda-table tbody tr:nth-child(even) td {
+    background: rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] .agenda-table tbody tr:nth-child(even) td {
+    background: rgba(255,255,255,0.02);
+}
+
+@media (max-width: 480px) {
+    .agenda-table th,
+    .agenda-table td {
+        padding: 12px 10px;
+        font-size: 0.95rem;
+    }
+}
+
 /* About Section */
 .about-content {
     max-width: 800px;
