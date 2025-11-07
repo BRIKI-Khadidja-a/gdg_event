@@ -98,35 +98,6 @@ body {
     align-items: center;
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.mobile-join-us {
-    display: none;
-}
-
-.join-us-button {
-    display: inline-block;
-    padding: 10px 25px;
-    background: var(--accent-color);
-    color: var(--bg-primary);
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px var(--shadow-hover);
-}
-
-.join-us-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px var(--shadow-hover);
-    background: var(--accent-dark);
-}
-
 .nav-link {
     text-decoration: none;
     color: var(--text-primary);
@@ -168,6 +139,7 @@ body {
     justify-content: center;
     font-size: 1.3rem;
     transition: all 0.3s ease;
+    margin-left: 1rem;
 }
 
 .theme-toggle:hover {
@@ -310,23 +282,20 @@ body {
     border-radius: 2px;
 }
 
-/* Agenda Table Styles (fixed and robust) */
+/* Agenda Table Styles */
 .agenda-section {
     padding: 60px 0;
     background: var(--bg-primary);
 }
 
 .table-responsive {
-    overflow-x: auto; /* allow horizontal scroll on narrow screens */
-    -webkit-overflow-scrolling: touch;
-    margin: 0 auto;
+    overflow-x: auto;
 }
 
-.table-responsive .agenda-table {
+.agenda-table {
+    width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem auto 0 auto; /* center */
-    display: table; /* keep table semantics */
-    /* min-width: max-content; expand to fit content on one line */
+    margin-top: 1.5rem;
     box-shadow: 0 6px 22px var(--shadow);
     border-radius: 10px;
     overflow: hidden;
@@ -342,28 +311,18 @@ body {
 
 .agenda-table th,
 .agenda-table td {
-    padding: 14px 24px; /* increased horizontal padding to add ~200px extra space overall */
+    padding: 14px 70px;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
     background: var(--card-bg);
     color: var(--text-primary);
     font-size: 1rem;
-    white-space: nowrap; /* keep each cell on one line on larger screens */
-}
-
-/* Compact timings column */
-.agenda-table td:first-child,
-.agenda-table th:first-child {
-    text-align: center;
-    width: 1%; /* shrink-to-fit */
-    white-space: nowrap;
 }
 
 .agenda-table thead th {
     background: linear-gradient(90deg, rgba(0,255,136,0.06), rgba(0,255,136,0.02));
     position: sticky;
     top: 0;
-    z-index: 2;
 }
 
 .agenda-table tbody tr:nth-child(even) td {
@@ -374,25 +333,11 @@ body {
     background: rgba(255,255,255,0.02);
 }
 
-/* Mobile: allow wrapping and reduce padding */
-@media (max-width: 768px) {
-    .agenda-table th,
-    .agenda-table td {
-        padding: 10px 12px;
-        white-space: normal;
-        text-align: left;
-        font-size: 0.98rem;
-    }
-    .table-responsive {
-        padding: 0 8px;
-    }
-}
-
 @media (max-width: 480px) {
     .agenda-table th,
     .agenda-table td {
-        padding: 8px 10px;
-        font-size: 0.92rem;
+        padding: 12px 10px;
+        font-size: 0.95rem;
     }
 }
 
@@ -495,10 +440,38 @@ body {
     position: relative;
 }
 
-.register-section .section-title {
-    color: var(--text-primary);
+.register-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
 }
 
+.register-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.register-section .section-title {
+    color: var(--text-primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.register-form {
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="dark"] .register-form {
+    background: rgba(26, 26, 26, 0.95);
+}
 
 .register-form-container {
     max-width: 600px;
@@ -521,11 +494,6 @@ body {
     margin-bottom: 0.5rem;
     color: var(--text-primary);
     font-weight: 500;
-}
-
-.form-group .required {
-    color: #ff4444;
-    margin-left: 3px;
 }
 
 .form-group input,
@@ -554,16 +522,6 @@ body {
     outline: none;
     border-color: var(--accent-color);
     box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
-}
-
-.form-group select {
-    cursor: pointer;
-}
-
-.form-group select option {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    padding: 10px;
 }
 
 .submit-button {
@@ -692,9 +650,9 @@ body {
 .social-media {
     display: flex;
     gap: 1rem;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     flex-wrap: wrap;
 }
 
@@ -734,6 +692,37 @@ body {
     transform: rotate(5deg);
 }
 
+.qr-code {
+    text-align: center;
+}
+
+.qr-placeholder {
+    width: 120px;
+    height: 120px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.qr-pattern {
+    width: 100px;
+    height: 100px;
+    background-image: 
+        repeating-linear-gradient(0deg, var(--text-primary) 0px, var(--text-primary) 8px, transparent 8px, transparent 10px),
+        repeating-linear-gradient(90deg, var(--text-primary) 0px, var(--text-primary) 8px, transparent 8px, transparent 10px);
+    opacity: 0.3;
+}
+
+.qr-text {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
 
 .footer-bottom {
     text-align: center;
@@ -779,25 +768,8 @@ html {
         margin: 1rem 0;
     }
 
-    .mobile-join-us {
-        display: block;
-    }
-
-    .join-us-mobile {
-        color: var(--accent-color) !important;
-        font-weight: bold;
-    }
-
     .hamburger {
         display: flex;
-    }
-
-    .nav-right {
-        gap: 0.5rem;
-    }
-
-    .join-us-button {
-        display: none;
     }
 
     .hamburger.active span:nth-child(1) {

@@ -1,24 +1,29 @@
 // Theme Toggle Functionality
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon = themeToggle.querySelector('.theme-icon');
 const html = document.documentElement;
 
-// Check for saved theme preference or default to light mode
-const currentTheme = localStorage.getItem('theme') || 'light';
-html.setAttribute('data-theme', currentTheme);
-updateThemeIcon(currentTheme);
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+if (themeToggle) {
+    const themeIcon = themeToggle.querySelector('.theme-icon');
     
-    html.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
-});
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', currentTheme);
+    updateThemeIcon(currentTheme);
 
-function updateThemeIcon(theme) {
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
+    });
+
+    function updateThemeIcon(theme) {
+        if (themeIcon) {
+            themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+    }
 }
 
 // Mobile Menu Toggle
@@ -26,18 +31,20 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const navLinks = document.querySelectorAll('.nav-link');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
-});
+
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+}
 
 // Active Navigation Link Highlighting
 const sections = document.querySelectorAll('.section, .hero');
@@ -67,8 +74,48 @@ window.addEventListener('scroll', highlightActiveNav);
 // Form Submission
 const registerForm = document.getElementById('registerForm');
 
+<<<<<<< HEAD
 registerForm.addEventListener('submit', (e) => {
+=======
+if (registerForm) {
+registerForm.addEventListener('submit', async (e) => {
+>>>>>>> 821dc3d (tech for everyone)
     e.preventDefault();
+    
+    // Check if all required fields are filled
+    const requiredFields = registerForm.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+<<<<<<< HEAD
+        if (!field.value.trim()) {
+            isValid = false;
+            field.style.borderColor = '#ff4444';
+            // Reset border color after user starts typing
+            field.addEventListener('input', function() {
+=======
+        // For select elements, check if value is empty
+        // For other fields, check if trimmed value is empty
+        const isEmpty = field.tagName === 'SELECT' 
+            ? !field.value 
+            : !field.value.trim();
+            
+        if (isEmpty) {
+            isValid = false;
+            field.style.borderColor = '#ff4444';
+            // Reset border color after user interacts with the field
+            const eventType = field.tagName === 'SELECT' ? 'change' : 'input';
+            field.addEventListener(eventType, function() {
+>>>>>>> 821dc3d (tech for everyone)
+                this.style.borderColor = '';
+            }, { once: true });
+        }
+    });
+    
+    if (!isValid) {
+        alert('Please fill in all required fields marked with *.');
+        return;
+    }
     
     const formData = new FormData(registerForm);
     const data = Object.fromEntries(formData);
@@ -82,6 +129,10 @@ registerForm.addEventListener('submit', (e) => {
     // Reset form
     registerForm.reset();
 });
+<<<<<<< HEAD
+=======
+}
+>>>>>>> 821dc3d (tech for everyone)
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -114,11 +165,13 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observe elements for animation
-document.querySelectorAll('.gallery-item, .feature-card, .register-form').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
+document.querySelectorAll('.gallery-item, .feature-card, .register-form, .agenda-table').forEach(el => {
+    if (el) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    }
 });
 
 // Gallery item click handler (for future modal implementation)
