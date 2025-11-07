@@ -41,7 +41,7 @@ gdg_event/
 
 ## 🛠️ Getting Started
 
-1. Clone or download this repository
+1. open the project :
 2. Open `index.html` in your web browser
 3. No build process or dependencies required!
 
