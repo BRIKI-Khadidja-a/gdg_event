@@ -87,26 +87,11 @@ registerForm.addEventListener('submit', async (e) => {
     let isValid = true;
     
     requiredFields.forEach(field => {
-<<<<<<< HEAD
         if (!field.value.trim()) {
             isValid = false;
             field.style.borderColor = '#ff4444';
             // Reset border color after user starts typing
             field.addEventListener('input', function() {
-=======
-        // For select elements, check if value is empty
-        // For other fields, check if trimmed value is empty
-        const isEmpty = field.tagName === 'SELECT' 
-            ? !field.value 
-            : !field.value.trim();
-            
-        if (isEmpty) {
-            isValid = false;
-            field.style.borderColor = '#ff4444';
-            // Reset border color after user interacts with the field
-            const eventType = field.tagName === 'SELECT' ? 'change' : 'input';
-            field.addEventListener(eventType, function() {
->>>>>>> 821dc3d (tech for everyone)
                 this.style.borderColor = '';
             }, { once: true });
         }
