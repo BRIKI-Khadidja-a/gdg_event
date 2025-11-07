@@ -41,7 +41,10 @@ gdg_event/
 
 ## 🛠️ Getting Started
 
-1. open the project : gdg-event-beta.vercel.app
+1. ## 🌐 Live Demo
+
+👉 [Open the project here](https://gdg-event-beta.vercel.app)
+
 2. Open `index.html` in your web browser
 3. No build process or dependencies required!
 
