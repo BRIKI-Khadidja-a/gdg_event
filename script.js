@@ -6,7 +6,14 @@ if (themeToggle) {
     const themeIcon = themeToggle.querySelector('.theme-icon');
     
     // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    let currentTheme = 'light';
+    try {
+        currentTheme = localStorage.getItem('theme') || 'light';
+    } catch (e) {
+        // If localStorage is not available, just use light theme
+        currentTheme = 'light';
+    }
+    
     html.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
 
@@ -15,7 +22,14 @@ if (themeToggle) {
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
         html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
+        
+        try {
+            localStorage.setItem('theme', newTheme);
+        } catch (e) {
+            // If localStorage is not available, just update the attribute
+            console.log('Theme preference not saved');
+        }
+        
         updateThemeIcon(newTheme);
     });
 
@@ -74,50 +88,43 @@ window.addEventListener('scroll', highlightActiveNav);
 // Form Submission
 const registerForm = document.getElementById('registerForm');
 
-<<<<<<< HEAD
-registerForm.addEventListener('submit', (e) => {
-=======
 if (registerForm) {
-registerForm.addEventListener('submit', async (e) => {
->>>>>>> 821dc3d (tech for everyone)
-    e.preventDefault();
-    
-    // Check if all required fields are filled
-    const requiredFields = registerForm.querySelectorAll('[required]');
-    let isValid = true;
-    
-    requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-            isValid = false;
-            field.style.borderColor = '#ff4444';
-            // Reset border color after user starts typing
-            field.addEventListener('input', function() {
-                this.style.borderColor = '';
-            }, { once: true });
+    registerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Check if all required fields are filled
+        const requiredFields = registerForm.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.style.borderColor = '#ff4444';
+                // Reset border color after user starts typing
+                field.addEventListener('input', function() {
+                    this.style.borderColor = '';
+                }, { once: true });
+            }
+        });
+        
+        if (!isValid) {
+            alert('Please fill in all required fields marked with *.');
+            return;
         }
+        
+        const formData = new FormData(registerForm);
+        const data = Object.fromEntries(formData);
+        
+        // Here you would typically send the data to a server
+        console.log('Registration data:', data);
+        
+        // Show success message
+        alert('Thank you for registering! We will contact you soon.');
+        
+        // Reset form
+        registerForm.reset();
     });
-    
-    if (!isValid) {
-        alert('Please fill in all required fields marked with *.');
-        return;
-    }
-    
-    const formData = new FormData(registerForm);
-    const data = Object.fromEntries(formData);
-    
-    // Here you would typically send the data to a server
-    console.log('Registration data:', data);
-    
-    // Show success message
-    alert('Thank you for registering! We will contact you soon.');
-    
-    // Reset form
-    registerForm.reset();
-});
-<<<<<<< HEAD
-=======
 }
->>>>>>> 821dc3d (tech for everyone)
 
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -166,4 +173,3 @@ document.querySelectorAll('.gallery-item').forEach(item => {
         console.log('Gallery item clicked');
     });
 });
-
